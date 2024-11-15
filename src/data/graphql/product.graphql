@@ -1,0 +1,43 @@
+query GetAllProducts {
+entryCollection {
+  total
+    items {
+      ...on EcommerceProducts {
+        title
+        slug
+        image {
+            url
+        }
+      }
+    }
+  }
+}
+
+
+query GetProductsCollection($skip: Int) {
+  ecommerceProductsCollection(limit: 20, skip: $skip) {
+    total
+    items {
+      title
+      slug
+      image {
+          url
+      }
+    }
+  }
+}
+
+
+
+query GetProductDetail($slug: String) {
+  ecommerceProductsCollection(where: {slug: $slug}) {
+    total
+    items {
+      title
+      description
+      image {
+        url
+      }
+    }
+  }
+}
