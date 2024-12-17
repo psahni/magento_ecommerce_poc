@@ -1,13 +1,12 @@
 export interface IProduct {
-  title: string;
-  description?: string;
-  slug?: string;
-  image: {
-    url?: string | undefined;
-  };
+  uid: string;
+  name: string;
+  sku: string;
+  description: { html: string };
+  small_image: { url: string };
 }
 
 export interface IProductCollection {
-  total: number;
+  total_count: number;
   items: IProduct[] | [];
 }

@@ -1,18 +1,21 @@
+/* eslint-disable no-console */
+
 import { sdk } from "@/data/client";
 import { PER_PAGE } from "@/constants";
-import { IProductCollection } from "@/types";
+import { GetProductsCollectionMagentoQuery } from "@/data/graphql/types";
 
 export async function FetchProducts(
   pageNum: number,
-): Promise<IProductCollection> {
-  const offset = pageNum * PER_PAGE;
-  const { ecommerceProductsCollection } = await sdk.GetProductsCollection({
-    skip: offset,
+): Promise<GetProductsCollectionMagentoQuery> {
+  // eslint-disable-next-line sonarjs/prefer-immediate-return
+  const data = await sdk.GetProductsCollectionMagento({
+    filter: {},
+    limit: PER_PAGE,
+    currentPage: pageNum,
   });
 
-  if (ecommerceProductsCollection && ecommerceProductsCollection.items) {
-    return ecommerceProductsCollection as IProductCollection;
-  }
-
-  return { total: 0, items: [] };
+  console.log("====================");
+  console.log(JSON.stringify(data));
+  console.log("====================");
+  return data;
 }

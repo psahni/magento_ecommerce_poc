@@ -11,10 +11,10 @@ export function ProductList() {
         {products.length > 0
           ? products.map((product: IProduct) => (
               <ProductCard
-                key={product.slug}
-                title={product.title}
-                slug={product.slug || ""}
-                imageUrl={product.image?.url}
+                key={product.uid}
+                title={product.name}
+                sku={product.sku}
+                imageUrl={product.small_image.url}
               />
             ))
           : "No products are available"}

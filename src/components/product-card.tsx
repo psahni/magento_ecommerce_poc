@@ -3,11 +3,11 @@ import Image from "next/image";
 
 export function ProductCard({
   title,
-  slug,
+  sku,
   imageUrl,
 }: {
   title: string;
-  slug: string;
+  sku: string;
   imageUrl: string | undefined;
 }) {
   return (
@@ -25,7 +25,7 @@ export function ProductCard({
       <Flex align="center" justify="between" gap="3">
         <Box>
           <Link
-            href={`/products/${slug}`}
+            href={`/products/${sku}`}
             underline="hover"
             color="gray"
             size="2"

@@ -28,7 +28,7 @@ export const defaultState: ProductsState = {
   error: undefined,
   products: [],
   totalProducts: 0,
-  currentPage: 0,
+  currentPage: 1,
   totalPages: 1,
 };
 
@@ -45,8 +45,15 @@ export const createProductStore = (
       set({ loading: true, error: undefined });
       try {
         const response = await fetch(`/api/products?page=${currentPage}`);
-        const { total, items } = (await response.json()) as IProductCollection;
-        set({ products: items, loading: false, totalProducts: total });
+        const { products } = (await response.json()) as {
+          total_count: number;
+          products: IProductCollection;
+        };
+        set({
+          products: products.items,
+          loading: false,
+          totalProducts: products.total_count,
+        });
       } catch (error) {
         set({ error: (error as Error).message, loading: false });
       }

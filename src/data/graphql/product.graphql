@@ -1,42 +1,44 @@
-query GetAllProducts {
-entryCollection {
-  total
+## MAGENTO ENDPOINTS
+query GetProductsCollectionMagento(
+  $filter: ProductAttributeFilterInput
+  $limit: Int
+  $currentPage: Int
+) {
+  products(filter: $filter, pageSize: $limit, currentPage: $currentPage) {
+    total_count
     items {
-      ...on EcommerceProducts {
-        title
-        slug
-        image {
-            url
+      uid
+      name
+      sku
+      small_image {
+        url
+      }
+      description {
+        html
+      }
+      price {
+        regularPrice {
+          amount {
+            currency
+            value
+          }
         }
       }
     }
   }
 }
 
-
-query GetProductsCollection($skip: Int) {
-  ecommerceProductsCollection(limit: 20, skip: $skip) {
-    total
+query GetProductBySku($sku: String!) {
+  products(filter: { sku: { eq: $sku } }) {
     items {
-      title
-      slug
-      image {
-          url
-      }
-    }
-  }
-}
-
-
-
-query GetProductDetail($slug: String) {
-  ecommerceProductsCollection(where: {slug: $slug}) {
-    total
-    items {
-      title
-      description
-      image {
+      uid
+      sku
+      name
+      small_image {
         url
+      }
+      description {
+        html
       }
     }
   }

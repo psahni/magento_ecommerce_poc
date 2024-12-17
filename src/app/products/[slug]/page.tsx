@@ -1,6 +1,5 @@
 import { sdk } from "@/data/client";
-import { IProduct } from "@/types";
-import { GetProductDetailQuery } from "@/data/graphql/types";
+import { IProduct, IProductCollection } from "@/types";
 import { ProductDetail } from "@/components/product-detail";
 
 export default async function ProductDetailPage({
@@ -8,18 +7,20 @@ export default async function ProductDetailPage({
 }: {
   params: { slug: string };
 }) {
-  let data: GetProductDetailQuery;
-  let productDetail: IProduct | undefined;
+  let data;
+  let products: IProductCollection = { items: [], total_count: 0 };
 
-  if (params.slug) {
-    data = await sdk.GetProductDetail({ slug: params.slug });
-    productDetail = data.ecommerceProductsCollection?.items[0] as IProduct;
+  const { slug } = params;
+
+  if (slug) {
+    data = await sdk.GetProductBySku({ sku: slug });
+    products = data.products as IProductCollection;
   }
 
   return (
     <>
-      {productDetail ? (
-        <ProductDetail productDetail={productDetail} />
+      {products && products.items.length > 0 ? (
+        <ProductDetail productDetail={products.items[0] as IProduct} />
       ) : (
         "No product found"
       )}

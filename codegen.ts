@@ -1,13 +1,14 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import "dotenv/config";
-const endPoint = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`;
+const endPoint = "https://magento.test/graphql";
+
 const config: CodegenConfig = {
   overwrite: true,
   schema: [
     {
       [`${endPoint}`]: {
         headers: {
-          Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+          Authorization: `Bearer `,
         },
       },
     },
