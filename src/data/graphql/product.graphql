@@ -1,10 +1,16 @@
 ## MAGENTO ENDPOINTS
 query GetProductsCollectionMagento(
   $filter: ProductAttributeFilterInput
+  $sort: ProductAttributeSortInput
   $limit: Int
   $currentPage: Int
 ) {
-  products(filter: $filter, pageSize: $limit, currentPage: $currentPage) {
+  products(
+    filter: $filter
+    sort: $sort
+    pageSize: $limit
+    currentPage: $currentPage
+  ) {
     total_count
     items {
       uid

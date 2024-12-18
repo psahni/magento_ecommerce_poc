@@ -11,7 +11,8 @@ export const PaginateProductList = React.memo(function PaginateProductList({
 }) {
   const { currentPage, totalProducts } = useProductStore((state) => state);
   const pageCount = Math.ceil(totalProducts / PER_PAGE);
-
+  // eslint-disable-next-line no-console
+  console.log(currentPage);
   return totalProducts > 0 ? (
     <Flex
       flexShrink="0"

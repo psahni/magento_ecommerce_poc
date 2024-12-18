@@ -2442,6 +2442,7 @@ export type CreateEmptyCartInput = {
 
 export type GetProductsCollectionMagentoQueryVariables = Exact<{
   filter?: InputMaybe<ProductAttributeFilterInput>;
+  sort?: InputMaybe<ProductAttributeSortInput>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
 }>;
@@ -2646,10 +2647,16 @@ export type GetProductBySkuQuery = {
 export const GetProductsCollectionMagentoDocument = gql`
   query GetProductsCollectionMagento(
     $filter: ProductAttributeFilterInput
+    $sort: ProductAttributeSortInput
     $limit: Int
     $currentPage: Int
   ) {
-    products(filter: $filter, pageSize: $limit, currentPage: $currentPage) {
+    products(
+      filter: $filter
+      sort: $sort
+      pageSize: $limit
+      currentPage: $currentPage
+    ) {
       total_count
       items {
         uid

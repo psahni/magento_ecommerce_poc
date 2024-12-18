@@ -5,6 +5,8 @@
 
 import { createStore } from "zustand/vanilla";
 import { IProduct, IProductCollection } from "@/types";
+import { FetchProducts } from "@/data/fetch";
+import { CATEGORY_MAPPING } from "@/constants";
 
 export type ProductsState = {
   loading: boolean;
@@ -13,10 +15,11 @@ export type ProductsState = {
   currentPage: number;
   totalPages: number;
   error?: string | undefined;
+  defaultCategoryUIDs: string[];
 };
 
 export type ProductsStateActions = {
-  fetchProducts: (currentPage: number) => void;
+  fetchProducts: (currentPage: number, categoryUIDs?: string[]) => void;
   updateProducts: (products: Array<IProduct> | []) => void;
   updateCurrentPage: (n: number) => void;
 };
@@ -28,8 +31,9 @@ export const defaultState: ProductsState = {
   error: undefined,
   products: [],
   totalProducts: 0,
-  currentPage: 1,
+  currentPage: 0,
   totalPages: 1,
+  defaultCategoryUIDs: CATEGORY_MAPPING.men,
 };
 
 export const initProductStore = (): ProductsState => {
@@ -41,14 +45,24 @@ export const createProductStore = (
 ) => {
   return createStore<ProductStore>()((set) => ({
     ...initialState,
-    fetchProducts: async (currentPage: number) => {
+    fetchProducts: async (currentPage: number, categoryUIDs: string[] = []) => {
       set({ loading: true, error: undefined });
+
+      const categoryUIDsToFetch =
+        categoryUIDs.length > 0
+          ? categoryUIDs
+          : initialState.defaultCategoryUIDs;
+
       try {
-        const response = await fetch(`/api/products?page=${currentPage}`);
-        const { products } = (await response.json()) as {
+        const response = await FetchProducts(
+          currentPage + 1,
+          categoryUIDsToFetch,
+        );
+        const { products } = response as {
           total_count: number;
           products: IProductCollection;
         };
+
         set({
           products: products.items,
           loading: false,

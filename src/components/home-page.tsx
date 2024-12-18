@@ -5,8 +5,9 @@ import { PaginateProductList } from "@/components/paginate-product-list";
 import { useEffect, useCallback } from "react";
 import { useProductStore } from "@/store/provider";
 import { Spinner } from "@/components/spinner";
+import { CategoryType, CATEGORY_MAPPING } from "@/constants";
 
-export function HomePage() {
+export function HomePage({ category }: { category?: CategoryType }) {
   const { fetchProducts, loading, currentPage, updateCurrentPage } =
     useProductStore((state) => state);
 
@@ -18,7 +19,10 @@ export function HomePage() {
   );
 
   useEffect(() => {
-    fetchProducts(currentPage);
+    fetchProducts(
+      currentPage,
+      category ? CATEGORY_MAPPING[category as CategoryType] : [],
+    );
   }, [currentPage, fetchProducts]);
 
   return loading ? (
