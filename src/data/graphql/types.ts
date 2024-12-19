@@ -2458,6 +2458,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2479,6 +2480,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2500,6 +2502,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2521,6 +2524,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2542,6 +2546,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2563,6 +2568,7 @@ export type GetProductsCollectionMagentoQuery = {
                   name?: string | undefined;
                   sku?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                   price?:
                     | {
@@ -2600,6 +2606,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | {
@@ -2607,6 +2614,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | {
@@ -2614,6 +2622,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | {
@@ -2621,6 +2630,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | {
@@ -2628,6 +2638,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | {
@@ -2635,6 +2646,7 @@ export type GetProductBySkuQuery = {
                   sku?: string | undefined;
                   name?: string | undefined;
                   small_image?: { url?: string | undefined } | undefined;
+                  short_description?: { html: string } | undefined;
                   description?: { html: string } | undefined;
                 }
               | undefined
@@ -2665,6 +2677,9 @@ export const GetProductsCollectionMagentoDocument = gql`
         small_image {
           url
         }
+        short_description {
+          html
+        }
         description {
           html
         }
@@ -2689,6 +2704,9 @@ export const GetProductBySkuDocument = gql`
         name
         small_image {
           url
+        }
+        short_description {
+          html
         }
         description {
           html

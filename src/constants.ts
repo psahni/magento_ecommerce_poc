@@ -1,9 +1,9 @@
-export const PER_PAGE = 9;
+export const PER_PAGE = 10;
 
 export type CategoryType = "men" | "women" | "gear";
 
 export const CATEGORY_MAPPING = {
-  men: ["MTI=", "NQ==", "OQ==", "Mw=="],
+  men: ["MTI=", "NQ==", "Mw=="],
   women: ["MjE="],
-  gear: ["Mw=="],
+  gear: ["Mw==", "OQ==", "Ng==", "NA=="],
 };

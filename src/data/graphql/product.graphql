@@ -19,6 +19,9 @@ query GetProductsCollectionMagento(
       small_image {
         url
       }
+      short_description {
+        html
+      }
       description {
         html
       }
@@ -42,6 +45,9 @@ query GetProductBySku($sku: String!) {
       name
       small_image {
         url
+      }
+      short_description {
+        html
       }
       description {
         html

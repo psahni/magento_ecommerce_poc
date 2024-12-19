@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Flex, Text, Box, Button, Link } from "@radix-ui/themes";
 
 export function ProductDetail({ productDetail }: { productDetail: IProduct }) {
+  // eslint-disable-next-line no-console
+  console.log(productDetail);
   return (
     <Flex align="start" direction="row" gap="3" ml="5em">
       <Box mt="5">
@@ -28,6 +30,11 @@ export function ProductDetail({ productDetail }: { productDetail: IProduct }) {
         <Text weight="bold" color="gray">
           {productDetail.name}
         </Text>
+        <Box
+          dangerouslySetInnerHTML={{
+            __html: productDetail.short_description.html,
+          }}
+        ></Box>
         <Box
           dangerouslySetInnerHTML={{ __html: productDetail.description.html }}
         ></Box>

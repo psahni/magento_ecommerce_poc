@@ -3,6 +3,7 @@ export interface IProduct {
   name: string;
   sku: string;
   description: { html: string };
+  short_description: { html: string };
   small_image: { url: string };
 }
 
