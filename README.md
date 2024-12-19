@@ -1,5 +1,9 @@
 # [Replace with client/project name]
 
+## Magento Guide (Internal)
+
+[Guide](https://docs.google.com/document/d/1dRrbDEVnukTC8ITQMdfwA7bqi8FUTCaug84wpoasB2c/edit?tab=t.0)
+
 ## Getting started
 
 1. Clone this repo:
